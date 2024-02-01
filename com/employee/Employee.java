@@ -4,7 +4,7 @@ public class Employee {
         private int id;
         private String name;
         private String gender;
-        private double age;
+        private int age;
         private String designation;
         private String bloodGp;
         private double salary;
@@ -13,7 +13,7 @@ public class Employee {
         public Employee(){
 
         }
-        public Employee(int id, String name, String gender, double age, String designation, String bloodGp, double salary, long phNumber, String email) {
+        public Employee(int id, String name, String gender, int age, String designation, String bloodGp, double salary, long phNumber, String email) {
             this.id = id;
             this.name = name;
             this.gender = gender;
@@ -49,11 +49,11 @@ public class Employee {
             this.gender = gender;
         }
 
-        public double getAge() {
+        public int getAge() {
             return age;
         }
 
-        public void setAge(double age) {
+        public void setAge(int age) {
             this.age = age;
         }
 
