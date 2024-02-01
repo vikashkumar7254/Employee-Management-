@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 
 
-    public class Main {
+    public class main {
         public static void main(String[] args) {
             Scanner sc= new Scanner(System.in);
             EmployeeDaoInt inf= new EmployeeDaoImp();
@@ -69,12 +69,21 @@ import java.util.Scanner;
             }
             if (choice == 4) {
 
+                System.out.println("Enter id :");
+                int id=sc.nextInt();
+
+                inf.update(id);
+
 
             }
             if (choice == 5) {
+                System.out.println("Enter ID :");
+                int id=sc.nextInt();
+                inf.delete(id);
 
             }
             if (choice == 6) {
+                System.out.println("Thakyou For Using application....good by");
 
 
 
