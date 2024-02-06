@@ -10,7 +10,17 @@ public class Employee {
         private double salary;
         private long phNumber;
         private String email;
-        public Employee(){
+        private int leave;
+
+    public int getLeave() {
+        return leave;
+    }
+
+    public void setLeave(int leave) {
+        this.leave = leave;
+    }
+
+    public Employee(){
 
         }
         public Employee(int id, String name, String gender, int age, String designation, String bloodGp, double salary, long phNumber, String email) {

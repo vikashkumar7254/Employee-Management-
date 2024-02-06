@@ -12,7 +12,7 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
     public void create(Employee emp) {
         try {
             con=DBConnection.CreateDBConnection();
-            PreparedStatement ps = con.prepareStatement("insert into employee values(?,?,?,?,?,?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("insert into employee values(?,?,?,?,?,?,?,?,?,?)");
             ps.setInt(1,emp.getId());
             ps.setString(2,emp.getName());
             ps.setInt(3,emp.getAge());
@@ -22,6 +22,7 @@ public class EmployeeDaoImp implements EmployeeDaoInt {
             ps.setDouble(7,emp.getSalary());
             ps.setLong(8,emp.getPhNumber());
             ps.setString(9,emp.getEmail());
+            ps.setInt(10,emp.getLeave());
             int rs= ps.executeUpdate();
             System.out.println("Records inserted");
 
@@ -49,7 +50,7 @@ con.close();
             rs.close();
 
         }catch (Exception e){
-            e.printStackTrace();;
+            System.out.println(e);
         }
 
     }
@@ -269,6 +270,12 @@ con.close();
             e.printStackTrace();
 
         }
+
+
+    }
+
+    @Override
+    public void attendence(int id) {
 
     }
 }

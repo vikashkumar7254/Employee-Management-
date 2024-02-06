@@ -6,5 +6,7 @@ public interface EmployeeDaoInt {
     public void showbyid(int id);
     public void update(int id);
     public void delete(int id);
+    public void attendence(int id);
+
 
 }
