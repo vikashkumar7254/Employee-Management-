@@ -43,7 +43,7 @@ con.close();
             PreparedStatement ps= con.prepareStatement("select *from employee");
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
-                System.out.println(rs.getInt(1)+rs.getString(2)+rs.getInt(3)+rs.getString(4)+rs.getString(5)+rs.getString(6)+rs.getDouble(7)+rs.getLong(8)+rs.getString(9));
+                System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getInt(3)+" "+rs.getString(4)+" "+rs.getString(5)+" "+rs.getString(6)+" "+rs.getDouble(7)+" "+rs.getLong(8)+" "+rs.getString(9)+" "+rs.getInt(10));
 
             }
             con.close();
@@ -63,7 +63,7 @@ con.close();
         String quary="select * from employee where Emp_id="+id;
             ResultSet rs= stm.executeQuery(quary);
             while(rs.next()){
-                System.out.println(rs.getInt(1)+rs.getString(2)+rs.getInt(3)+rs.getString(4)+rs.getString(5)+rs.getString(6)+rs.getDouble(7)+rs.getLong(8)+rs.getString(9));
+                System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getInt(3)+"  "+rs.getString(4)+"  "+rs.getString(5)+"  "+rs.getString(6)+"  "+rs.getDouble(7)+"  "+rs.getLong(8)+"  "+rs.getString(9)+"  "+rs.getInt(10));
 
             }
 
