@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.Scanner;
 
 public class Menu {
+    String date;
     int id;
     int totalleaves;
     int finalleaves;
@@ -22,7 +23,7 @@ public class Menu {
         main m1 = new main();
         int choice = 0;
         while(true){
-            if (choice == 7){
+            if (choice == 8){
 
                 m1.mainMenu();
 
@@ -36,7 +37,8 @@ public class Menu {
             System.out.println("4.Press 4 to Update main.Employee record");
             System.out.println("5.Press 5 to delete employee record");
             System.out.println("6.Press 6 to check leave Requests");
-            System.out.println("6.Press 7 to for go to Login DashBoard");
+            System.out.println("7.Press 7 for Attendence Portal");
+            System.out.println("8.Press 8 to for go to Login DashBoard");
             System.out.println("Enter your choice..: ");
             choice = sc.nextInt();
             if (choice == 1) {
@@ -175,6 +177,39 @@ public class Menu {
                         }
                     }
 
+                }
+            }
+            if(choice==7){
+                System.out.println("1.Show Attendence Sheet");
+                System.out.println("2.Show Attendence by Date");
+                int ch1=sc.nextInt();
+                if(ch1==1){
+                    try{
+                        con=DBConnection.CreateDBConnection();
+                        PreparedStatement ps=con.prepareStatement("select *from attendence");
+                        ResultSet rs=ps.executeQuery();
+                        while(rs.next()){
+                            System.out.println(rs.getInt(1)+rs.getString(2)+rs.getString(3)+rs.getString(4));
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+                if(ch1==2){
+                    sc.nextLine();
+                    System.out.println("Enter Date :");
+                     date=sc.nextLine();
+                    try {
+                        con=DBConnection.CreateDBConnection();
+                        PreparedStatement ps=con.prepareStatement("select *from attendence where Dates=?");
+                        ps.setString(1,date);
+                        ResultSet rs=ps.executeQuery();
+                        while (rs.next()){
+                            System.out.println(rs.getInt(1)+rs.getString(2)+rs.getString(3)+rs.getString(4));
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
 
