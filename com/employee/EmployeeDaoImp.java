@@ -73,13 +73,10 @@ public class EmployeeDaoImp implements EmployeeDaoInt
                 System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
 
             }
-            con.close();
-            rs.close();
-
         }
         catch (Exception e)
         {
-            System.out.println(e);
+            e.printStackTrace();
         }
 
     }

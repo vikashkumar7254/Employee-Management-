@@ -1,90 +1,106 @@
 package com.employee;
 
+import javax.swing.text.DateFormatter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Authentication {
+    main m2= new main();
     Connection con;
-        Scanner sc= new Scanner(System.in);
+    String name;
+    Scanner sc= new Scanner(System.in);
     Menu m1= new Menu();
-    void staffAuthenticate(){
+    void AdminAuthenticate(){
 
         con=DBConnection.CreateDBConnection();
-
-        System.out.println("");
-        System.out.println("Press 1 for SIGN UP..");
-        System.out.println("Press 2 for LOGIN..");
-        System.out.print("Enter Your Choice: ");
-        int ch=sc.nextInt();
-        if(ch==1){
-            sc.nextLine();
-            System.out.println("");
-            System.out.print("Enter Username: ");
-            String username=sc.nextLine();
-            System.out.print("Enter Password: ");
-            String password=sc.nextLine();
-            try{
-                PreparedStatement ps = con.prepareStatement("insert into admin_login values(?,?)");
-                ps.setString(1,username);
-                ps.setString(2,password);
-                int rs=ps.executeUpdate();
-                System.out.println("Sign Up Successfully");
-
-            }catch (Exception e){
-                e.printStackTrace();
+        System.out.println("Enter username..");
+        String username=sc.nextLine();
+        System.out.println("Enter password");
+        String password=sc.nextLine();
+        try {
+            PreparedStatement ps =con.prepareStatement("select *from admin_login where Username=? and Password_=?");
+            ps.setString(1,username);
+            ps.setString(2,password);
+            ResultSet rs=ps.executeQuery();
+            if(rs.next()){
+                m1.Adminmenu();
+            }
+            else{
+                System.out.println("You have Enter Wrong Details...");
+                System.out.println("press 1 for Main menu");
+                System.out.println("press 2 for Exit");
+                int sh=sc.nextInt();
+                if(sh==1){
+                    m2.mainMenu();
+                }
+                if(sh==2){
+                    System.out.println("Thankyou For using our Application");
+                }
             }
 
-        }
-        if(ch==2){
-            sc.nextLine();
-            System.out.println("");
-            System.out.print("Enter Username: ");
-            String username=sc.nextLine();
-            System.out.print("Enter Password: ");
-            String password=sc.nextLine();
-            try {
-                PreparedStatement ps =con.prepareStatement("select * from admin_login where Username=? and Password_=?");
-                ps.setString(1,username);
-                ps.setString(2,password);
-                ResultSet rs=ps.executeQuery();
-                if(rs.next()){
-                    m1.Adminmenu();
-                }
-                else{
-                    System.out.println("You have Enter Wrong Details...");
-                }
-
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
     }
-    void employeeAuthenticate()
-    {
+
+
+    void employeeAuthenticate(){
         con=DBConnection.CreateDBConnection();
-        System.out.println("");
-        System.out.print("Enter your ID to LOGIN: ");
+        System.out.println("Enter your ID to LOGIN..");
         int id=sc.nextInt();
-        try
-        {
-                PreparedStatement ps = con.prepareStatement("select * from employee where Emp_id=?");
-                ps.setInt(1,id);
-                ResultSet rs= ps.executeQuery();
-                if(rs.next())
-                {
-                        m1.emp_Menu(id);
+        try {
+            PreparedStatement ps = con.prepareStatement("select *from employee where Emp_id=?");
+            ps.setInt(1,id);
+            ResultSet rs= ps.executeQuery();
+            if(rs.next()){
+                try{
+                    PreparedStatement pss= con.prepareStatement("select  Emp_name from employee where Emp_id="+id);
+                    ResultSet rss=pss.executeQuery();
+                    if(rss.next()) {
+                        name = rss.getString(1);
+                    }
+                    try{
+                        LocalDate d1= LocalDate.now();
+                        DateTimeFormatter d2= DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                        String date = d1.format(d2);
+                        PreparedStatement p=con.prepareStatement("insert into attendence values(?,?,?,?)");
+                        p.setInt(1,id);
+                        p.setString(2,name);
+                        p.setString(3,date);
+                        p.setString(4,"Present");
+                        int r=p.executeUpdate();
+                        if(r!=0){
+                            System.out.println("record inserted");
+                        }
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
-                else
-                {
-                    System.out.println("You Have Entered Wrong ID...");
+                m1.emp_Menu(id);
+            }
+            else{
+                System.out.println("you have enter wrong id");
+                System.out.println("press 1 for Main menu");
+                System.out.println("press 2 for Exit");
+                int h=sc.nextInt();
+                if(h==1){
+                      m2.mainMenu();
                 }
-        }
-        catch (Exception e)
-        {
+                if(h==2){
+                    System.out.println("Thankyou For Using Application");
+                }
+
+            }
+        }catch (Exception e){
             e.printStackTrace();
         }
 
