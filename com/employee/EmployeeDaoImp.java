@@ -56,6 +56,7 @@ public class EmployeeDaoImp implements EmployeeDaoInt
         {
             PreparedStatement ps= con.prepareStatement("select * from employee");
             ResultSet rs=ps.executeQuery();
+
             while(rs.next())
             {
                 System.out.format("%d\t%s\t%d\t\t%s\t\t\t%s\t\t\t\t%s\t\t\t\t%.2f\t%d\t\t%s\t\t%d\n",
@@ -71,6 +72,10 @@ public class EmployeeDaoImp implements EmployeeDaoInt
                         rs.getInt(10));
 
                 System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
+
+            while(rs.next()){
+                System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getInt(3)+" "+rs.getString(4)+" "+rs.getString(5)+" "+rs.getString(6)+" "+rs.getDouble(7)+" "+rs.getLong(8)+" "+rs.getString(9)+" "+rs.getInt(10));
+
 
             }
             con.close();
@@ -102,6 +107,7 @@ public class EmployeeDaoImp implements EmployeeDaoInt
             Statement stm= con.createStatement();
             String quary="select * from employee where Emp_id="+id;
             ResultSet rs= stm.executeQuery(quary);
+
             while(rs.next())
             {
                 System.out.format("%d\t%s\t%d\t\t%s\t\t\t%s\t\t\t\t%s\t\t\t\t%.2f\t%d\t\t%s\t\t%d\n",
@@ -115,6 +121,11 @@ public class EmployeeDaoImp implements EmployeeDaoInt
                         rs.getLong(8),
                         rs.getString(9),
                         rs.getInt(10));
+
+            while(rs.next()){
+                System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getInt(3)+"  "+rs.getString(4)+"  "+rs.getString(5)+"  "+rs.getString(6)+"  "+rs.getDouble(7)+"  "+rs.getLong(8)+"  "+rs.getString(9)+"  "+rs.getInt(10));
+
+
             }
 
             System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
