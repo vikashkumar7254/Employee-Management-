@@ -19,11 +19,16 @@ import java.util.Scanner;
                 System.out.println("1) ADMIN LOGIN..");
                 System.out.println("2) EMPLOYEE LOGIN..");
                 System.out.print("Enter Your Choice: ");
+
+                int ch=sc.nextInt();
+                System.out.println("-----------------------");
+
                 int ch=sc.nextInt();
 
                 System.out.println("1.ADMIN LOGIN..");
                 System.out.println("2.EMPLOYEE LOGIN..");
                 int ch=sc.nextInt();
+
 
                 if(ch==1){
                     a1.staffAuthenticate();

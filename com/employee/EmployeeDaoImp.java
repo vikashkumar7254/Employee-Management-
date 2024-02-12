@@ -73,8 +73,10 @@ public class EmployeeDaoImp implements EmployeeDaoInt
 
                 System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
 
+
             while(rs.next()){
                 System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getInt(3)+" "+rs.getString(4)+" "+rs.getString(5)+" "+rs.getString(6)+" "+rs.getDouble(7)+" "+rs.getLong(8)+" "+rs.getString(9)+" "+rs.getInt(10));
+
 
 
             }
@@ -121,6 +123,10 @@ public class EmployeeDaoImp implements EmployeeDaoInt
                         rs.getLong(8),
                         rs.getString(9),
                         rs.getInt(10));
+
+            }
+
+
 
             while(rs.next()){
                 System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getInt(3)+"  "+rs.getString(4)+"  "+rs.getString(5)+"  "+rs.getString(6)+"  "+rs.getDouble(7)+"  "+rs.getLong(8)+"  "+rs.getString(9)+"  "+rs.getInt(10));
